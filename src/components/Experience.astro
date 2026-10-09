@@ -1,0 +1,139 @@
+---
+/* Home — experience as `git log`: each role is a commit, current one HEAD. */
+import { roles } from '../data/projects';
+---
+
+<section class="sh-section" id="experience">
+	<div class="shell">
+		<div class="sh-win" data-reveal>
+			<header class="sh-win__bar">
+				<span class="sh-win__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+				<h2 class="sh-win__name">git log --career</h2>
+				<span class="sh-win__meta">{roles.length} commits</span>
+			</header>
+
+			<div class="sh-win__body">
+				<ol class="sh-log">
+					{
+						roles.map((role, i) => (
+							<li class="sh-log__row">
+								<span class="sh-log__hash">
+									<i aria-hidden="true">{i === 0 ? 'HEAD ->' : '•'}</i>
+									{role.period}
+								</span>
+
+								<div class="sh-log__body">
+									<span class="sh-log__title">
+										{role.title}
+										<span class="sh-log__co"> @ {role.company}</span>
+									</span>
+									<span class="sh-log__note">{role.note}</span>
+
+									<ul class="sh-log__points">
+										{role.points.map((point) => <li>{point}</li>)}
+									</ul>
+								</div>
+							</li>
+						))
+					}
+				</ol>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.sh-log {
+		border-left: 1px dashed var(--line-strong);
+		margin-left: 0.4rem;
+	}
+
+	.sh-log__row {
+		position: relative;
+		display: grid;
+		grid-template-columns: 11rem minmax(0, 1fr);
+		gap: 0.35rem 1.5rem;
+		padding: 0.85rem 0 1.35rem 1.5rem;
+	}
+
+	.sh-log__row:last-child {
+		padding-bottom: 0.35rem;
+	}
+
+	.sh-log__row::before {
+		content: '';
+		position: absolute;
+		left: -0.32rem;
+		top: 1.35rem;
+		width: 0.55rem;
+		height: 0.55rem;
+		border-radius: 999px;
+		background: var(--paper-raised);
+		border: 1px solid var(--accent);
+	}
+
+	.sh-log__hash {
+		font-size: var(--step--2);
+		color: var(--ink-muted);
+	}
+
+	.sh-log__hash i {
+		display: block;
+		font-style: normal;
+		color: var(--accent);
+		letter-spacing: 0.08em;
+	}
+
+	.sh-log__body {
+		display: block;
+	}
+
+	.sh-log__title {
+		display: block;
+		font-weight: 700;
+		color: var(--ink);
+		text-transform: lowercase;
+	}
+
+	.sh-log__co {
+		color: var(--accent);
+		font-weight: 400;
+	}
+
+	.sh-log__note {
+		display: block;
+		margin-top: 0.2rem;
+		font-size: var(--step--2);
+		color: var(--ink-soft);
+		max-width: 44rem;
+	}
+
+	.sh-log__points {
+		margin-top: 0.65rem;
+		display: grid;
+		gap: 0.3rem;
+	}
+
+	.sh-log__points li {
+		position: relative;
+		padding-left: 1.15rem;
+		font-size: var(--step--2);
+		line-height: 1.65;
+		color: var(--ink-muted);
+		max-width: 52rem;
+	}
+
+	.sh-log__points li::before {
+		content: '-';
+		position: absolute;
+		left: 0;
+		color: var(--accent);
+	}
+
+	@media (max-width: 64rem) {
+		.sh-log__row {
+			grid-template-columns: minmax(0, 1fr);
+			gap: 0.3rem;
+		}
+	}
+</style>

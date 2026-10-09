@@ -1,0 +1,90 @@
+---
+/* Home — hero. Shell design language: a session opening, then output. */
+const facts = [
+	{ label: 'role', value: 'senior frontend developer' },
+	{ label: 'now', value: 'yadak.com — oct 2024 → present' },
+	{ label: 'response', value: 'usually within a day' },
+];
+---
+
+<section class="sh-hero">
+	<div class="shell">
+		<p class="sh-prompt" data-reveal>
+			<span class="sh-ps1">ali@dev</span><span class="sh-sep">:</span><span
+				class="sh-path">~/portfolio</span
+			><span class="sh-sep">$</span> <span class="sh-typed">whoami</span><span
+				class="sh-caret"
+				aria-hidden="true"></span>
+		</p>
+
+		<h1 class="sh-hero__title" data-reveal style="--i: 1">
+			ali fahim — software engineer
+		</h1>
+
+		<div class="sh-hero__grid">
+			<div class="sh-out" data-reveal style="--i: 2">
+				<p>
+					Senior frontend developer at Yadak — search, chat and the type-safe API layer behind a
+					large car marketplace. Before that: legacy React overhauls, CI/CD for a handful of
+					projects, and dragging older codebases onto Vite. Mostly frontend, comfortable across
+					the stack.
+				</p>
+
+				<div class="sh-actions">
+					<a class="btn btn--solid" href="#work">
+						./selected-work
+						<span class="btn__arrow btn__arrow--down" aria-hidden="true">↓</span>
+					</a>
+					<a class="link" href="mailto:ialifahim92@gmail.com"
+						><span class="sh-sep">→</span> ialifahim92@gmail.com</a
+					>
+				</div>
+			</div>
+
+			<dl class="sh-kv" data-reveal style="--i: 3">
+				{
+					facts.map((fact) => (
+						<div class="sh-kv__row">
+							<dt>{fact.label}</dt>
+							<dd>{fact.value}</dd>
+						</div>
+					))
+				}
+			</dl>
+		</div>
+	</div>
+</section>
+
+<style>
+	.sh-hero {
+		padding-block: clamp(2.5rem, 2rem + 3vw, 4.5rem);
+		border-bottom: 1px dashed var(--line);
+	}
+
+	.sh-hero__title {
+		margin-top: 1.1rem;
+		font-size: clamp(1.75rem, 1.1rem + 3vw, 3.5rem);
+		letter-spacing: -0.03em;
+		color: var(--ink);
+	}
+
+	.sh-hero__grid {
+		display: grid;
+		grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+		gap: clamp(2rem, 1rem + 3vw, 3.5rem);
+		align-items: start;
+		margin-top: 2rem;
+	}
+
+	.sh-out {
+		border-left: 2px solid var(--line-strong);
+		padding-left: 1.15rem;
+		color: var(--ink-soft);
+	}
+
+	@media (max-width: 64rem) {
+		.sh-hero__grid {
+			grid-template-columns: minmax(0, 1fr);
+		}
+	}
+</style>

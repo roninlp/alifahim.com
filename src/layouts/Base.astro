@@ -1,0 +1,92 @@
+---
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import '../styles/global.css';
+
+interface Props {
+	title: string;
+	description: string;
+	theme?: 'paper' | 'shell';
+}
+
+const { title, description, theme = 'paper' } = Astro.props;
+const themeColor = theme === 'shell' ? '#0a0e0c' : '#faf7f1';
+---
+
+<html lang="en" data-theme={theme}>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content={description} />
+		<meta name="theme-color" content={themeColor} />
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<script is:inline>
+			// Reveal-on-scroll is a progressive enhancement: only hide content when
+			// there is a script to bring it back.
+			document.documentElement.classList.add('js');
+		</script>
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<title>{title}</title>
+	</head>
+	<body>
+		<a class="skip-link" href="#main">Skip to content</a>
+		<SiteHeader />
+		<main id="main">
+			<slot />
+		</main>
+		<SiteFooter theme={theme} />
+
+		<script>
+			// Reveal sections as they enter the viewport. Decorative only — content
+			// is readable without it, and reduced motion opts out entirely.
+			//
+			// A scroll sweep rather than an IntersectionObserver: observers can miss
+			// elements during a fast flick, and a portfolio that hides its own work
+			// is worse than one that doesn't animate.
+			const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+			let pending = Array.from(document.querySelectorAll<HTMLElement>('[data-reveal]'));
+
+			const reveal = (el: HTMLElement) => el.classList.add('is-visible');
+
+			const sweep = () => {
+				if (!pending.length) return;
+				const viewport = window.innerHeight;
+				pending = pending.filter((el) => {
+					if (el.classList.contains('is-visible')) return false;
+					if (el.getBoundingClientRect().top < viewport) {
+						reveal(el);
+						return false;
+					}
+					return true;
+				});
+			};
+
+			if (reduce) {
+				pending.forEach(reveal);
+				pending = [];
+			} else {
+				let ticking = false;
+				const onScroll = () => {
+					if (ticking) return;
+					ticking = true;
+					requestAnimationFrame(() => {
+						sweep();
+						ticking = false;
+					});
+				};
+				window.addEventListener('scroll', onScroll, { passive: true });
+				window.addEventListener('resize', onScroll, { passive: true });
+				sweep();
+			}
+		</script>
+	</body>
+</html>
+
+<style is:global>
+	html {
+		scroll-padding-top: 6rem;
+	}
+</style>

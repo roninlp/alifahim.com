@@ -1,0 +1,75 @@
+---
+interface Props {
+	theme?: 'paper' | 'shell';
+}
+
+const { theme = 'paper' } = Astro.props;
+const year = new Date().getFullYear();
+const links = [
+	{ href: 'https://github.com/roninlp', label: 'GitHub' },
+	{ href: 'https://www.linkedin.com/in/ali-fahim', label: 'LinkedIn' },
+	{ href: 'mailto:ialifahim92@gmail.com', label: 'Email' },
+];
+---
+
+<footer class="site-footer">
+	<div class="shell site-footer__inner">
+		<p class="mono muted">© {year} Ali Fahim</p>
+
+		<p class="mono muted site-footer__role">Software engineer — frontend</p>
+
+		<ul class="site-footer__links">
+			{
+				links.map((link) => (
+					<li>
+						<a class="link link--quiet mono" href={link.href}>
+							{link.label}
+						</a>
+					</li>
+				))
+			}
+		</ul>
+	</div>
+	<div class="shell">
+		<p class="site-footer__colophon mono muted">
+			{
+				theme === 'shell'
+					? 'Set in JetBrains Mono. Built with Astro.'
+					: 'Set in Instrument Serif and Inter. Built with Astro.'
+			}
+		</p>
+	</div>
+</footer>
+
+<style>
+	.site-footer {
+		border-top: 1px solid var(--line);
+		padding-block: 2.5rem 2rem;
+	}
+
+	.site-footer__inner {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: 0.75rem 2rem;
+	}
+
+	.site-footer__links {
+		display: flex;
+		gap: 1.5rem;
+	}
+
+	.site-footer__colophon {
+		margin-top: 1.5rem;
+		font-size: var(--step--2);
+		letter-spacing: 0.04em;
+	}
+
+	@media (max-width: 40rem) {
+		.site-footer__inner {
+			flex-direction: column;
+			align-items: flex-start;
+		}
+	}
+</style>

@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-label="Storefront illustration">
+  <rect width="1200" height="800" fill="#f2ece1" />
+  <!-- header -->
+  <rect x="110" y="80" width="980" height="88" rx="14" fill="#fffdf9" stroke="rgba(26,21,17,0.12)" />
+  <rect x="150" y="112" width="26" height="26" rx="8" fill="#b0492a" />
+  <rect x="188" y="118" width="120" height="13" rx="6.5" fill="rgba(26,21,17,0.72)" />
+  <rect x="640" y="118" width="72" height="12" rx="6" fill="rgba(26,21,17,0.16)" />
+  <rect x="732" y="118" width="72" height="12" rx="6" fill="rgba(26,21,17,0.16)" />
+  <rect x="824" y="118" width="72" height="12" rx="6" fill="rgba(26,21,17,0.16)" />
+  <circle cx="1030" cy="125" r="17" fill="none" stroke="rgba(26,21,17,0.30)" stroke-width="3" />
+  <!-- hero band -->
+  <rect x="110" y="196" width="980" height="252" rx="14" fill="#fffdf9" stroke="rgba(26,21,17,0.12)" />
+  <path d="M760 448c0-72 58-130 130-130s130 58 130 130z" fill="rgba(176,73,42,0.14)" />
+  <circle cx="890" cy="292" r="34" fill="rgba(176,73,42,0.32)" />
+  <rect x="170" y="252" width="380" height="24" rx="12" fill="rgba(26,21,17,0.82)" />
+  <rect x="170" y="298" width="300" height="24" rx="12" fill="rgba(26,21,17,0.82)" />
+  <rect x="170" y="352" width="330" height="12" rx="6" fill="rgba(26,21,17,0.16)" />
+  <rect x="170" y="376" width="250" height="12" rx="6" fill="rgba(26,21,17,0.12)" />
+  <rect x="170" y="412" width="150" height="44" rx="10" fill="#1a1511" />
+  <rect x="196" y="430" width="72" height="9" rx="4.5" fill="#faf7f1" />
+  <!-- product cards -->
+  <g>
+    <rect x="110" y="486" width="310" height="234" rx="14" fill="#fffdf9" stroke="rgba(26,21,17,0.12)" />
+    <rect x="132" y="508" width="266" height="120" rx="10" fill="rgba(26,21,17,0.07)" />
+    <circle cx="222" cy="568" r="30" fill="rgba(26,21,17,0.14)" />
+    <rect x="300" y="546" width="72" height="44" rx="10" fill="rgba(26,21,17,0.10)" />
+    <rect x="132" y="652" width="180" height="12" rx="6" fill="rgba(26,21,17,0.22)" />
+    <rect x="132" y="680" width="90" height="12" rx="6" fill="rgba(26,21,17,0.12)" />
+  </g>
+  <g>
+    <rect x="445" y="486" width="310" height="234" rx="14" fill="#fffdf9" stroke="rgba(26,21,17,0.12)" />
+    <rect x="467" y="508" width="266" height="120" rx="10" fill="rgba(176,73,42,0.10)" />
+    <rect x="524" y="536" width="152" height="64" rx="12" fill="rgba(176,73,42,0.28)" />
+    <rect x="467" y="652" width="164" height="12" rx="6" fill="rgba(26,21,17,0.22)" />
+    <rect x="467" y="680" width="90" height="12" rx="6" fill="rgba(26,21,17,0.12)" />
+    <rect x="640" y="672" width="72" height="26" rx="13" fill="rgba(176,73,42,0.16)" />
+  </g>
+  <g>
+    <rect x="780" y="486" width="310" height="234" rx="14" fill="#fffdf9" stroke="rgba(26,21,17,0.12)" />
+    <rect x="802" y="508" width="266" height="120" rx="10" fill="rgba(26,21,17,0.07)" />
+    <path d="M856 628l58-84 58 84z" fill="rgba(26,21,17,0.14)" />
+    <circle cx="1012" cy="560" r="24" fill="rgba(26,21,17,0.10)" />
+    <rect x="802" y="652" width="196" height="12" rx="6" fill="rgba(26,21,17,0.22)" />
+    <rect x="802" y="680" width="90" height="12" rx="6" fill="rgba(26,21,17,0.12)" />
+  </g>
+</svg>

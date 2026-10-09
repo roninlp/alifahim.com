@@ -1,0 +1,129 @@
+---
+const links = [
+	{ href: '/#work', label: 'Work' },
+	{ href: '/#about', label: 'About' },
+	{ href: '/#experience', label: 'Experience' },
+	{ href: '/#contact', label: 'Contact' },
+];
+---
+
+<header class="site-header">
+	<div class="shell site-header__inner">
+		<a class="brand" href="/" aria-label="Ali Fahim — home">
+			<span class="brand__mark" aria-hidden="true">AF</span>
+			<span class="brand__name">Ali Fahim</span>
+		</a>
+
+		<nav class="site-nav" aria-label="Primary">
+			{
+				links.map((link) => (
+					<a class="site-nav__link" href={link.href}>
+						{link.label}
+					</a>
+				))
+			}
+		</nav>
+	</div>
+</header>
+
+<style>
+	.site-header {
+		position: sticky;
+		top: 0;
+		z-index: 50;
+		background: color-mix(in srgb, var(--paper) 86%, transparent);
+		backdrop-filter: blur(12px) saturate(1.15);
+		-webkit-backdrop-filter: blur(12px) saturate(1.15);
+		border-bottom: 1px solid var(--line);
+	}
+
+	.site-header__inner {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		gap: 0.35rem 1.5rem;
+		padding-block: 0.95rem;
+	}
+
+	.brand {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.7rem;
+	}
+
+	.brand__mark {
+		display: grid;
+		place-items: center;
+		width: 1.85rem;
+		height: 1.85rem;
+		border: 1px solid var(--line-strong);
+		border-radius: var(--radius);
+		font-family: var(--font-mono);
+		font-size: 0.66rem;
+		font-weight: 500;
+		letter-spacing: 0.04em;
+		color: var(--ink-soft);
+		transition:
+			border-color var(--duration) var(--ease-out),
+			color var(--duration) var(--ease-out);
+	}
+
+	.brand:hover .brand__mark {
+		border-color: var(--accent);
+		color: var(--accent-deep);
+	}
+
+	.brand__name {
+		font-family: var(--font-display);
+		font-size: 1.28rem;
+		letter-spacing: -0.01em;
+	}
+
+	.site-nav {
+		display: flex;
+		align-items: center;
+		gap: clamp(0.9rem, 0.4rem + 1.6vw, 1.9rem);
+	}
+
+	.site-nav__link {
+		position: relative;
+		font-family: var(--font-mono);
+		font-size: var(--step--2);
+		font-weight: 500;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: var(--ink-muted);
+		padding-block: 0.35rem;
+		transition: color var(--duration-fast) var(--ease-out);
+	}
+
+	.site-nav__link::after {
+		content: '';
+		position: absolute;
+		left: 0;
+		bottom: 0.1rem;
+		width: 100%;
+		height: 1px;
+		background: var(--accent);
+		transform: scaleX(0);
+		transform-origin: left;
+		transition: transform var(--duration) var(--ease-out);
+	}
+
+	.site-nav__link:hover,
+	.site-nav__link:focus-visible {
+		color: var(--ink);
+	}
+
+	.site-nav__link:hover::after,
+	.site-nav__link:focus-visible::after {
+		transform: scaleX(1);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.site-nav__link::after {
+			transition: none;
+		}
+	}
+</style>

@@ -1,0 +1,117 @@
+---
+/* Home — contact. A window that runs `./say-hello`, with the real details. */
+const elsewhere = [
+	{ href: 'https://github.com/roninlp', label: 'github ↗' },
+	{ href: 'https://www.linkedin.com/in/ali-fahim', label: 'linkedin ↗' },
+	{ href: 'tel:+989058742341', label: '+98 905 874 2341' },
+];
+---
+
+<section class="sh-section sh-section--last" id="contact">
+	<div class="shell">
+		<div class="sh-win sh-win--accent" data-reveal>
+			<header class="sh-win__bar">
+				<span class="sh-win__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+				<span class="sh-win__name">./contact --start</span>
+				<span class="sh-win__meta">exit 0</span>
+			</header>
+
+			<div class="sh-win__body sh-contact">
+				<p class="sh-prompt sh-prompt--sm">
+					<span class="sh-ps1">ali@dev</span><span class="sh-sep">:</span><span
+						class="sh-path">~/portfolio</span
+					><span class="sh-sep">$</span> <span class="sh-typed sh-typed--static">./say-hello</span><span
+						class="sh-caret"
+						aria-hidden="true"></span>
+				</p>
+
+				<h2 class="sh-contact__title">Let's build something worth using.</h2>
+
+				<p class="sh-contact__lede">
+					The best work usually starts with a plain conversation about what is slow, confusing,
+					or not quite right yet. Tell me about it — I answer every message myself.
+				</p>
+
+				<div class="sh-actions">
+					<a class="btn btn--solid" href="mailto:ialifahim92@gmail.com?subject=Project%20inquiry">
+						mail --compose
+						<span class="btn__arrow" aria-hidden="true">↗</span>
+					</a>
+					<a class="link" href="mailto:ialifahim92@gmail.com"
+						><span class="sh-sep">→</span> ialifahim92@gmail.com</a
+					>
+				</div>
+
+				<div class="sh-contact__foot">
+					<p class="sh-status">
+						<i aria-hidden="true"></i>
+						Usually replies within a day
+					</p>
+					<ul class="sh-contact__links">
+						{
+							elsewhere.map((item) => (
+								<li>
+									<a class="link" href={item.href}>
+										{item.label}
+									</a>
+								</li>
+							))
+						}
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.sh-contact__title {
+		margin-top: 1.15rem;
+		font-size: clamp(1.5rem, 1rem + 2.6vw, 2.75rem);
+		letter-spacing: -0.03em;
+	}
+
+	.sh-contact__lede {
+		margin-top: 0.9rem;
+		max-width: 44rem;
+		color: var(--ink-soft);
+	}
+
+	.sh-contact .sh-actions {
+		margin-top: 1.5rem;
+	}
+
+	.sh-contact__foot {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.75rem 1.5rem;
+		margin-top: 1.75rem;
+		padding-top: 1rem;
+		border-top: 1px dashed var(--line);
+	}
+
+	.sh-status {
+		display: flex;
+		align-items: center;
+		gap: 0.6rem;
+		font-size: var(--step--2);
+		color: var(--ink-muted);
+	}
+
+	.sh-status i {
+		width: 0.5rem;
+		height: 0.5rem;
+		border-radius: 999px;
+		background: var(--accent);
+		box-shadow: 0 0 8px color-mix(in srgb, var(--accent) 70%, transparent);
+	}
+
+	.sh-contact__links {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.6rem 1.25rem;
+		font-size: var(--step--2);
+	}
+</style>

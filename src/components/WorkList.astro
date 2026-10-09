@@ -1,0 +1,196 @@
+---
+/* Home — selected work. The window lists the three real roles from the
+   résumé; the fictional case studies in `projects` stay on disk under /work
+   but are no longer linked from here. */
+import { work } from '../data/projects';
+---
+
+<section class="sh-section" id="work">
+	<div class="shell">
+		<div class="sh-win" data-reveal>
+			<header class="sh-win__bar">
+				<span class="sh-win__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+				<h2 class="sh-win__name">~/portfolio/selected-work</h2>
+				<span class="sh-win__meta">3 items</span>
+			</header>
+
+			<div class="sh-win__body">
+				<ul class="sh-list">
+					{
+						work.map((item) => (
+							<li class="sh-row">
+								<span class="sh-row__idx">{item.index}</span>
+
+								<span class="sh-row__name">
+									<span class="sh-row__title">{item.company}</span>
+									<span class="sh-row__tag">
+										{item.role} · {item.period}
+									</span>
+								</span>
+
+								<span class="sh-row__stack">{item.stack.slice(0, 3).join(' · ')}</span>
+
+								<span class="sh-row__result">
+									<b>{item.result.value}</b> {item.result.label}
+								</span>
+
+								<span class="sh-row__year">{item.year}</span>
+							</li>
+						))
+					}
+				</ul>
+
+				<p class="sh-hint">
+					<span class="sh-sep">$</span> full history, bullet by bullet, on
+					<a class="link" href="https://www.linkedin.com/in/ali-fahim">linkedin ↗</a>
+				</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.sh-list {
+		border-top: 1px dashed var(--line);
+	}
+
+	.sh-row {
+		position: relative;
+		display: grid;
+		grid-template-columns: 2.5rem minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 1fr) 3.5rem;
+		gap: 1rem;
+		align-items: center;
+		padding: 0.75rem 0.75rem;
+		margin-inline: -0.75rem;
+		border-bottom: 1px dashed var(--line);
+		transition: background-color var(--duration) var(--ease-out);
+	}
+
+	.sh-row::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 0;
+		bottom: 0;
+		width: 2px;
+		background: var(--accent);
+		transform: scaleY(0);
+		transform-origin: center;
+		transition: transform var(--duration) var(--ease-out);
+	}
+
+	.sh-row__idx {
+		color: var(--ink-muted);
+		font-size: var(--step--2);
+	}
+
+	.sh-row__idx::before {
+		content: '>';
+		display: inline-block;
+		margin-right: 0.35rem;
+		color: var(--accent);
+		opacity: 0;
+		transform: translateX(-4px);
+		transition:
+			opacity var(--duration) var(--ease-out),
+			transform var(--duration) var(--ease-out);
+	}
+
+	.sh-row__name {
+		display: block;
+		min-width: 0;
+	}
+
+	.sh-row__title {
+		display: block;
+		font-weight: 700;
+		font-size: var(--step-0);
+		letter-spacing: -0.01em;
+		text-transform: lowercase;
+		color: var(--ink);
+	}
+
+	.sh-row__tag {
+		display: block;
+		font-size: var(--step--2);
+		color: var(--ink-muted);
+		line-height: 1.5;
+	}
+
+	.sh-row__stack {
+		font-size: var(--step--2);
+		color: var(--ink-muted);
+		text-transform: lowercase;
+	}
+
+	.sh-row__result {
+		font-size: var(--step--2);
+		color: var(--ink-soft);
+	}
+
+	.sh-row__result b {
+		color: var(--accent);
+		font-weight: 700;
+	}
+
+	.sh-row__year {
+		text-align: right;
+		font-size: var(--step--2);
+		color: var(--ink-muted);
+	}
+
+	.sh-hint {
+		margin-top: 0.9rem;
+		font-size: var(--step--2);
+		color: var(--ink-muted);
+	}
+
+	.sh-hint .link {
+		color: var(--ink-soft);
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.sh-row:hover {
+			background: var(--accent-wash);
+		}
+
+		.sh-row:hover::before {
+			transform: scaleY(1);
+		}
+
+		.sh-row:hover .sh-row__idx::before {
+			opacity: 1;
+			transform: translateX(0);
+		}
+	}
+
+	@media (max-width: 64rem) {
+		.sh-row {
+			grid-template-columns: 2.5rem minmax(0, 1fr) minmax(0, 1fr);
+		}
+
+		.sh-row__stack,
+		.sh-row__year {
+			display: none;
+		}
+	}
+
+	@media (max-width: 44rem) {
+		.sh-row {
+			grid-template-columns: 2.5rem minmax(0, 1fr);
+			align-items: start;
+			row-gap: 0.35rem;
+		}
+
+		.sh-row__result {
+			grid-column: 2;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.sh-row::before,
+		.sh-row__idx::before {
+			transition: none;
+		}
+	}
+</style>
