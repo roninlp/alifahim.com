@@ -7,8 +7,9 @@ pages are static HTML and CSS, with ~50 lines of JavaScript for scroll reveals.
 
 ```sh
 pnpm dev      # dev server on localhost:4321
-pnpm build    # static output to ./dist
+pnpm build    # static output to ./dist, plus Cloudflare Build Output in .cloudflare/output
 pnpm preview  # preview the build
+pnpm deploy   # build and deploy to Cloudflare with the cf CLI
 ```
 
 ## Where things live
@@ -20,12 +21,41 @@ pnpm preview  # preview the build
 | Case study pages | `src/pages/work/[slug].astro` (one per project, generated from the data file) |
 | Colours, type scale, motion tokens, shell theme | `src/styles/global.css` (`:root`, plus `html[data-theme='shell']`) |
 | Project cover art | `public/covers/*.svg` |
+| Worker name, custom domain, compat date | `cloudflare.config.ts` |
+| Static assets directory | `wrangler.config.ts` |
 
 The homepage runs the `shell` theme (`<Base theme="shell">`). The four case studies are leftover
 placeholder copy — they're unlinked from the homepage and still carry fictional projects, so
 either rewrite them from real work or delete `src/pages/work/` and the `projects` array. Fonts
 (Instrument Serif, Inter, JetBrains Mono) are self-hosted from `@fontsource` packages, so nothing
 is fetched from a third party.
+
+## Deployment
+
+The site is a static Worker: every route is prerendered, so there is no server code and
+Cloudflare serves `dist/` through [Workers Static Assets](https://developers.cloudflare.com/workers/static-assets/).
+`alifahim.com` is attached as a custom domain.
+
+`cloudflare.config.ts` is the Worker's source of truth (name, compatibility date, custom domain,
+observability). `wrangler.config.ts` only names the static assets directory, and Wrangler reads it
+alongside `cloudflare.config.ts` behind `--experimental-new-config`. There is no `wrangler.jsonc`.
+
+`cf build` and `cf deploy` run `astro build` and then read the Build Output Specification tree in
+`.cloudflare/output/v0/`. Astro does not write that tree itself, so `astro.config.mjs` carries a
+small `cloudflareBuildOutput` integration that emits it at the end of every build. It is glue for a
+gap between `cf` and `@astrojs/cloudflare`; delete it once the adapter emits Build Output on its own.
+
+### Continuous delivery
+
+`.github/workflows/deploy.yml` builds and dry-runs the deploy on every pull request, and deploys on
+every push to `main`. It authenticates with two repository secrets:
+
+| Secret | Value |
+| --- | --- |
+| `CLOUDFLARE_API_TOKEN` | An API token with **Workers Admin** on the account and **DNS Read/Write** on `alifahim.com` |
+| `CLOUDFLARE_ACCOUNT_ID` | The Cloudflare account ID |
+
+Create the token with `cf user tokens create`, and set the secrets with `gh secret set`.
 
 ## Craft notes
 
