@@ -7,6 +7,9 @@ export default defineConfig({
 		domains: ["alifahim.com"],
 		observability: {
 			enabled: true,
+			traces: {
+				enabled: true,
+			},
 		},
 	},
 });
