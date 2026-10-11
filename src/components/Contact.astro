@@ -1,5 +1,5 @@
 ---
-/* Home — contact. A window that runs `./say-hello`, with the real details. */
+/* Home: contact. A window that runs `./say-hello`, with the real details. */
 const elsewhere = [
 	{ href: 'https://github.com/roninlp', label: 'github ↗' },
 	{ href: 'https://www.linkedin.com/in/ali-fahim', label: 'linkedin ↗' },
@@ -29,7 +29,7 @@ const elsewhere = [
 
 				<p class="sh-contact__lede">
 					The best work usually starts with a plain conversation about what is slow, confusing,
-					or not quite right yet. Tell me about it — I answer every message myself.
+					or not quite right yet. Tell me about it. I answer every message myself.
 				</p>
 
 				<div class="sh-actions">
@@ -89,13 +89,14 @@ const elsewhere = [
 		gap: 0.75rem 1.5rem;
 		margin-top: 1.75rem;
 		padding-top: 1rem;
-		border-top: 1px dashed var(--line);
+		border-top: 1px solid var(--line);
 	}
 
 	.sh-status {
 		display: flex;
 		align-items: center;
 		gap: 0.6rem;
+		font-family: var(--font-mono);
 		font-size: var(--step--2);
 		color: var(--ink-muted);
 	}
@@ -105,13 +106,13 @@ const elsewhere = [
 		height: 0.5rem;
 		border-radius: 999px;
 		background: var(--accent);
-		box-shadow: 0 0 8px color-mix(in srgb, var(--accent) 70%, transparent);
 	}
 
 	.sh-contact__links {
 		display: flex;
 		flex-wrap: wrap;
 		gap: 0.6rem 1.25rem;
+		font-family: var(--font-mono);
 		font-size: var(--step--2);
 	}
 </style>

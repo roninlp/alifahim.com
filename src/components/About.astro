@@ -1,5 +1,5 @@
 ---
-/* Home — about. Terminal window: prose as output, skills as a config file,
+/* Home: about. Terminal window: prose as output, skills as a config file,
    education as a log entry. All copy drawn from the résumé. */
 const toolkit = [
 	{
@@ -23,7 +23,7 @@ const toolkit = [
 const education = {
 	degree: "Bachelor's Degree in Software Engineering",
 	school: 'Bojnord University',
-	period: 'Sep 2010 — May 2015',
+	period: 'Sep 2010 to May 2015',
 };
 ---
 
@@ -40,14 +40,15 @@ const education = {
 				<div class="sh-prose">
 					<p class="sh-para">
 						<span class="sh-para__n">01</span>I'm Ali Fahim, a software engineer focused on the
-						frontend — React, Next.js and TypeScript, mostly. I care about the part people
+						frontend: React, Next.js and TypeScript, mostly. I care about the part people
 						actually touch: how fast the first screen lands, whether search finds the thing, and
 						what happens on the second click.
 					</p>
 					<p class="sh-para">
-						<span class="sh-para__n">02</span>Day to day I'm at Yadak, working on search, chat
-						and the type-safe API layer behind a large car marketplace. React and Next.js on the
-						front, tRPC and Postgres behind it, Elasticsearch doing the heavy lifting.
+						<span class="sh-para__n">02</span>Day to day I'm at Yadak, working on search, an AI
+						chat assistant, and the type-safe API layer behind a large car marketplace. React and
+						Next.js on the front, tRPC and Postgres behind it, Elasticsearch doing the heavy
+						lifting. I also set up the design system foundation the UI is built on.
 					</p>
 					<p class="sh-para">
 						<span class="sh-para__n">03</span>I like the unglamorous half: migrating a legacy
@@ -111,6 +112,7 @@ const education = {
 
 	.sh-para__n {
 		color: var(--ink-muted);
+		font-family: var(--font-mono);
 		font-size: var(--step--2);
 		padding-top: 0.2rem;
 	}
@@ -121,19 +123,20 @@ const education = {
 	}
 
 	.sh-pane {
-		border: 1px dashed var(--line);
+		border: 1px solid var(--line);
 		border-radius: var(--radius);
 		padding-bottom: 1rem;
 	}
 
 	.sh-pane__title {
 		padding: 0.45rem 0.9rem;
-		border-bottom: 1px dashed var(--line);
+		border-bottom: 1px solid var(--line);
 		background: color-mix(in srgb, var(--accent) 6%, transparent);
+		font-family: var(--font-mono);
 		font-size: var(--step--2);
 		font-weight: 700;
 		letter-spacing: 0.1em;
-		color: var(--accent);
+		color: var(--accent-deep);
 	}
 
 	.sh-pane .sh-kv--flush {
@@ -163,6 +166,7 @@ const education = {
 
 	.sh-edu__meta {
 		margin-top: 0.3rem;
+		font-family: var(--font-mono);
 		font-size: var(--step--2);
 		color: var(--ink-muted);
 	}

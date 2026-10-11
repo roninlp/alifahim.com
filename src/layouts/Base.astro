@@ -10,7 +10,7 @@ interface Props {
 }
 
 const { title, description, theme = 'paper' } = Astro.props;
-const themeColor = theme === 'shell' ? '#0a0e0c' : '#faf7f1';
+const themeColor = theme === 'shell' ? '#14110e' : '#faf7f1';
 ---
 
 <html lang="en" data-theme={theme}>
@@ -29,6 +29,7 @@ const themeColor = theme === 'shell' ? '#0a0e0c' : '#faf7f1';
 			document.documentElement.classList.add('js');
 		</script>
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="alternate icon" type="image/x-icon" href="/favicon.ico" />
 		<title>{title}</title>
 	</head>
 	<body>
@@ -40,7 +41,7 @@ const themeColor = theme === 'shell' ? '#0a0e0c' : '#faf7f1';
 		<SiteFooter theme={theme} />
 
 		<script>
-			// Reveal sections as they enter the viewport. Decorative only — content
+			// Reveal sections as they enter the viewport. Decorative only: content
 			// is readable without it, and reduced motion opts out entirely.
 			//
 			// A scroll sweep rather than an IntersectionObserver: observers can miss

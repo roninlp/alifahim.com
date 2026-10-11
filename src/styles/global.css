@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Global styles — warm editorial
+   Global styles: warm editorial
    Paper, ink, one accent. Typography does the work.
    ========================================================================== */
 
@@ -23,7 +23,7 @@
 	--line: color-mix(in srgb, var(--ink) 11%, transparent);
 	--line-strong: color-mix(in srgb, var(--ink) 24%, transparent);
 
-	/* Accent — clay. Used sparingly. */
+	/* Accent: clay. Used sparingly. */
 	--accent: #b0492a;
 	--accent-deep: #8a3619;
 	--accent-wash: color-mix(in srgb, var(--accent) 11%, transparent);
@@ -377,7 +377,7 @@ p {
 }
 
 /* Reveal on scroll ------------------------------------------------------- */
-/* Entrance only, once per element — animation with fill is the right tool
+/* Entrance only, once per element. Animation with fill is the right tool
    here; nothing is retargeted mid-flight. */
 .js [data-reveal] {
 	opacity: 0;
@@ -409,7 +409,7 @@ p {
 	}
 }
 
-/* Cover reveal — variant for large, rare image surfaces. The figure fades,
+/* Cover reveal: variant for large, rare image surfaces. The figure fades,
    the image settles from 1.02 inside an overflow mask. */
 .js [data-reveal='cover'].is-visible {
 	animation-name: cover-fade;
@@ -492,7 +492,7 @@ p {
 
 /* View transitions --------------------------------------------------------
    Cross-document: works on plain multi-page navigation. Browsers without
-   support simply load the page instantly — the current behavior. */
+   support simply load the page instantly, the current behavior. */
 @view-transition {
 	navigation: auto;
 }
@@ -527,95 +527,57 @@ p {
 }
 
 /* ==========================================================================
-   Theme — shell (the promoted prototype variant)
-   Everything monospaced on phosphor-dark, framed as terminal windows.
-   Opt in per page: <html data-theme="shell">. Pages without it keep the
-   warm editorial tokens above.
+   Theme: shell (the promoted prototype variant)
+   Warm dark: espresso black, paper-warm text, one clay accent. The terminal
+   voice stays (prompts, command names, window frames), but the phosphor and
+   CRT effects are gone. Opt in per page: <html data-theme="shell">. Pages
+   without it keep the warm editorial tokens above.
    ========================================================================== */
 
 html[data-theme='shell'] {
 	color-scheme: dark;
 
-	--paper: #0a0e0c;
-	--paper-raised: #101614;
-	--paper-sunk: #060908;
-	--ink: #cbe3d2;
-	--ink-soft: #9dbfa9;
-	--ink-muted: #74907d;
-	--line: rgba(93, 240, 138, 0.16);
-	--line-strong: rgba(93, 240, 138, 0.42);
-	--accent: #5df08a;
-	--accent-deep: #3ecb6d;
-	--accent-wash: rgba(93, 240, 138, 0.12);
+	--paper: #14110e;
+	--paper-raised: #1c1713;
+	--paper-sunk: #0e0b09;
+	--ink: #f2ebe3;
+	--ink-soft: #cbbdb1;
+	--ink-muted: #9c8d80;
+	--line: color-mix(in srgb, var(--ink) 12%, transparent);
+	--line-strong: color-mix(in srgb, var(--ink) 28%, transparent);
+	--accent: #e08a63;
+	--accent-deep: #f2ab84;
+	--accent-wash: color-mix(in srgb, var(--accent) 13%, transparent);
 
-	--font-display: var(--font-mono);
-	--font-sans: var(--font-mono);
-
-	--radius: 3px;
-	--radius-lg: 4px;
+	--radius: 5px;
+	--radius-lg: 10px;
 
 	--ease-out: cubic-bezier(0.23, 1, 0.32, 1);
-	--duration-fast: 90ms;
-	--duration: 150ms;
-	--duration-slow: 300ms;
+	--duration-fast: 120ms;
+	--duration: 200ms;
+	--duration-slow: 360ms;
 }
 
 html[data-theme='shell'] body {
-	font-family: var(--font-mono);
-	font-size: var(--step--1);
-	line-height: 1.7;
+	font-family: var(--font-sans);
+	font-size: var(--step-0);
+	line-height: 1.65;
 }
 
 html[data-theme='shell'] h1,
 html[data-theme='shell'] h2,
 html[data-theme='shell'] h3,
 html[data-theme='shell'] h4 {
-	font-family: var(--font-mono);
-	font-weight: 700;
-	line-height: 1.15;
-	letter-spacing: -0.02em;
+	font-family: var(--font-display);
+	font-weight: 400;
+	line-height: 1.1;
+	letter-spacing: -0.015em;
 	text-transform: none;
 }
 
-/* Fixed scanlines over the surface. Static — never animated. */
-html[data-theme='shell'] body::after {
-	content: '';
-	position: fixed;
-	inset: 0;
-	z-index: 60;
-	pointer-events: none;
-	background: repeating-linear-gradient(
-		to bottom,
-		rgba(255, 255, 255, 0.028) 0 1px,
-		transparent 1px 3px
-	);
-}
-
-/* Pointer-follow glow — transform only, off for touch and reduced motion. */
-.cursor-glow {
-	display: none;
-	position: fixed;
-	left: 0;
-	top: 0;
-	z-index: 0;
-	width: 34rem;
-	height: 34rem;
-	margin: -17rem 0 0 -17rem;
-	border-radius: 999px;
-	background: radial-gradient(circle, rgba(93, 240, 138, 0.13), transparent 65%);
-	pointer-events: none;
-	transform: translate3d(50vw, 32vh, 0);
-	will-change: transform;
-}
-
-@media (hover: hover) and (pointer: fine) {
-	html[data-theme='shell'] .cursor-glow {
-		display: block;
-	}
-}
-
-/* Prompt line — shared by hero and contact. */
+/* Prompt line: shared by hero and contact. */
 .sh-prompt {
+	font-family: var(--font-mono);
 	font-size: var(--step--1);
 	letter-spacing: 0.01em;
 }
@@ -630,7 +592,7 @@ html[data-theme='shell'] body::after {
 }
 
 .sh-sep {
-	color: var(--accent);
+	color: var(--ink-muted);
 }
 
 .sh-typed {
@@ -686,25 +648,26 @@ html[data-theme='shell'] body::after {
 	padding-bottom: clamp(2.5rem, 2rem + 3vw, 4.5rem);
 }
 
-/* Terminal window — shared by work, about, experience and contact. */
+/* Terminal window: shared by work, about, experience and contact. */
 .sh-win {
-	border: 1px solid var(--line-strong);
+	border: 1px solid var(--line);
 	border-radius: var(--radius-lg);
 	background: var(--paper-raised);
 	overflow: hidden;
 }
 
 .sh-win--accent {
-	border-color: var(--accent);
+	border-color: color-mix(in srgb, var(--accent) 45%, transparent);
 }
 
 .sh-win__bar {
 	display: flex;
 	align-items: center;
 	gap: 1rem;
-	padding: 0.55rem 0.9rem;
+	padding: 0.8rem 1.25rem;
 	border-bottom: 1px solid var(--line);
-	background: color-mix(in srgb, var(--accent) 7%, var(--paper));
+	background: color-mix(in srgb, var(--ink) 3%, var(--paper));
+	font-family: var(--font-mono);
 	font-size: var(--step--2);
 	color: var(--ink-muted);
 }
@@ -715,21 +678,26 @@ html[data-theme='shell'] body::after {
 }
 
 .sh-win__dots i {
-	width: 0.6rem;
-	height: 0.6rem;
+	width: 0.55rem;
+	height: 0.55rem;
 	border-radius: 999px;
 	border: 1px solid var(--line-strong);
 }
 
-.sh-win__name {
-	font-size: var(--step--2);
+/* Window title. `.sh-win .sh-win__name` so it beats the theme's h2 rule,
+   which would otherwise send these to the display serif at caption size. */
+.sh-win .sh-win__name {
+	font-family: var(--font-mono);
+	font-size: var(--step-0);
 	font-weight: 500;
-	color: var(--ink-soft);
-	letter-spacing: 0.04em;
+	line-height: 1.25;
+	letter-spacing: 0.01em;
+	color: var(--ink);
 }
 
 .sh-win__meta {
 	margin-left: auto;
+	font-family: var(--font-mono);
 	letter-spacing: 0.08em;
 }
 
@@ -737,7 +705,7 @@ html[data-theme='shell'] body::after {
 	padding: clamp(1rem, 0.8rem + 0.8vw, 1.6rem);
 }
 
-/* Key/value block — hero facts and toolkit rows. */
+/* Key/value block: hero facts and toolkit rows. */
 .sh-kv {
 	border: 1px solid var(--line);
 	border-radius: var(--radius-lg);
@@ -759,6 +727,7 @@ html[data-theme='shell'] body::after {
 
 .sh-kv dt {
 	color: var(--accent);
+	font-family: var(--font-mono);
 	font-size: var(--step--2);
 }
 
@@ -769,45 +738,49 @@ html[data-theme='shell'] body::after {
 .sh-kv dd {
 	margin: 0;
 	color: var(--ink-soft);
+	font-family: var(--font-mono);
 	font-size: var(--step--2);
 	text-align: right;
 }
 
 /* Control skins ---------------------------------------------------------- */
 html[data-theme='shell'] .btn {
-	background: var(--accent-wash);
-	border: 1px solid var(--accent);
-	color: var(--accent);
+	background: transparent;
+	border: 1px solid var(--line-strong);
+	color: var(--ink-soft);
 	font-family: var(--font-mono);
 	letter-spacing: 0.02em;
 }
 
 html[data-theme='shell'] .btn--solid {
-	background: var(--accent-wash);
-	border-color: var(--accent);
-	color: var(--accent);
+	background: var(--ink);
+	border-color: transparent;
+	color: var(--paper);
 }
 
 html[data-theme='shell'] .tag {
 	border-color: var(--line-strong);
-	border-radius: var(--radius);
-	color: var(--ink-soft);
 }
 
 html[data-theme='shell'] .eyebrow {
-	color: var(--accent);
+	color: var(--ink-muted);
 }
 
 html[data-theme='shell'] .eyebrow--accent {
-	color: var(--accent);
+	color: var(--accent-deep);
 }
 
 @media (hover: hover) and (pointer: fine) {
-	html[data-theme='shell'] .btn:hover,
+	html[data-theme='shell'] .btn:hover {
+		background: var(--accent-wash);
+		border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+		color: var(--ink);
+	}
+
 	html[data-theme='shell'] .btn--solid:hover {
 		background: var(--accent);
-		border-color: var(--accent);
-		color: #06110a;
+		border-color: transparent;
+		color: var(--paper-sunk);
 	}
 
 	html[data-theme='shell'] .btn:hover .btn__arrow {
@@ -816,11 +789,11 @@ html[data-theme='shell'] .eyebrow--accent {
 
 	html[data-theme='shell'] .link:hover,
 	html[data-theme='shell'] .link:focus-visible {
-		color: var(--accent);
+		color: var(--accent-deep);
 	}
 }
 
-/* Reveals — quick and mechanical rather than soft. */
+/* Reveals: quick and mechanical rather than soft. */
 html[data-theme='shell'].js [data-reveal].is-visible {
 	animation: sh-rise var(--duration-slow) var(--ease-out) backwards;
 	animation-delay: calc(var(--i, 0) * 70ms);
@@ -851,9 +824,5 @@ html[data-theme='shell'].js [data-reveal].is-visible {
 	html[data-theme='shell'].js [data-reveal].is-visible {
 		animation: sh-rise 180ms ease backwards;
 		animation-delay: 0ms;
-	}
-
-	html[data-theme='shell'] .cursor-glow {
-		display: none;
 	}
 }

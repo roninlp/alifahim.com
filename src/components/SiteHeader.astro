@@ -9,8 +9,8 @@ const links = [
 
 <header class="site-header">
 	<div class="shell site-header__inner">
-		<a class="brand" href="/" aria-label="Ali Fahim — home">
-			<span class="brand__mark" aria-hidden="true">AF</span>
+		<a class="brand" href="/" aria-label="Ali Fahim, home">
+			<img class="brand__mark" src="/favicon.svg" alt="" width="32" height="32" />
 			<span class="brand__name">Ali Fahim</span>
 		</a>
 
@@ -53,25 +53,16 @@ const links = [
 	}
 
 	.brand__mark {
-		display: grid;
-		place-items: center;
+		display: block;
 		width: 1.85rem;
 		height: 1.85rem;
-		border: 1px solid var(--line-strong);
-		border-radius: var(--radius);
-		font-family: var(--font-mono);
-		font-size: 0.66rem;
-		font-weight: 500;
-		letter-spacing: 0.04em;
-		color: var(--ink-soft);
-		transition:
-			border-color var(--duration) var(--ease-out),
-			color var(--duration) var(--ease-out);
+		transition: transform var(--duration) var(--ease-out);
 	}
 
-	.brand:hover .brand__mark {
-		border-color: var(--accent);
-		color: var(--accent-deep);
+	@media (hover: hover) and (pointer: fine) {
+		.brand:hover .brand__mark {
+			transform: scale(1.06);
+		}
 	}
 
 	.brand__name {
@@ -122,6 +113,14 @@ const links = [
 	}
 
 	@media (prefers-reduced-motion: reduce) {
+		.brand__mark {
+			transition: none;
+		}
+
+		.brand:hover .brand__mark {
+			transform: none;
+		}
+
 		.site-nav__link::after {
 			transition: none;
 		}

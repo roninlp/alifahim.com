@@ -22,7 +22,7 @@ export const projects: Project[] = [
 		title: 'Ledger',
 		tagline: 'A finance dashboard rebuilt around speed',
 		summary:
-			'A treasury tool for people who look at numbers all day — rebuilt so the interface keeps up with the way they think.',
+			'A treasury tool for people who look at numbers all day, rebuilt so the interface keeps up with the way they think.',
 		year: '2025',
 		role: 'Lead frontend engineer',
 		team: '2 designers, 4 engineers',
@@ -38,14 +38,14 @@ export const projects: Project[] = [
 			{
 				title: 'The problem',
 				paragraphs: [
-					'Ledger had grown the way dashboards do: one chart at a time, each one reasonable on its own, until opening a tab meant waiting on forty requests to agree with each other. Analysts kept a spreadsheet open alongside it — not because the data was wrong, but because the interface made them wait for numbers they already knew.',
+					'Ledger had grown the way dashboards do: one chart at a time, each one reasonable on its own, until opening a tab meant waiting on forty requests to agree with each other. Analysts kept a spreadsheet open alongside it, not because the data was wrong, but because the interface made them wait for numbers they already knew.',
 					'The brief was not a redesign. It was a question: what would it take for this to feel instant?',
 				],
 			},
 			{
 				title: 'The approach',
 				paragraphs: [
-					'We started by measuring where the time actually went. Most of it was not rendering — it was waterfall. Data that depended on other data, fetched in sequence, painted in batches. We restructured the query layer around the questions people asked rather than the shape of the API, then streamed the slow parts in behind a stable skeleton so the layout never jumped.',
+					'We started by measuring where the time actually went. Most of it was not rendering: it was waterfall. Data that depended on other data, fetched in sequence, painted in batches. We restructured the query layer around the questions people asked rather than the shape of the API, then streamed the slow parts in behind a stable skeleton so the layout never jumped.',
 					'Lists went virtual, mutations went optimistic, and every row got a keyboard path. The chart library went out and was replaced with hand-built SVG that we could animate on the compositor without blocking input.',
 				],
 			},
@@ -66,7 +66,7 @@ export const projects: Project[] = [
 		title: 'Harbor',
 		tagline: 'A design system four teams actually adopted',
 		summary:
-			'Tokens, primitives and documentation built to make the good path the fast one — and to survive contact with four product teams.',
+			'Tokens, primitives and documentation built to make the good path the fast one, and to survive contact with four product teams.',
 		year: '2024',
 		role: 'Frontend engineer, systems',
 		team: '1 designer, 2 engineers',
@@ -83,14 +83,14 @@ export const projects: Project[] = [
 				title: 'The problem',
 				paragraphs: [
 					'Four teams, four button components, three definitions of a focus ring. Nothing was broken in isolation, but every feature paid a small tax in decisions nobody should have to make twice.',
-					'A previous attempt had failed on adoption — the components were fine, the ergonomics were not. People reached for the local copy because it was closer.',
+					'A previous attempt had failed on adoption: the components were fine, the ergonomics were not. People reached for the local copy because it was closer.',
 				],
 			},
 			{
 				title: 'The approach',
 				paragraphs: [
 					'We treated adoption as the actual feature. Everything shipped as one package with typed props, sensible defaults, and no required configuration. If the default was not right for a case, that was a bug in the system, not a reason to fork.',
-					'Tokens are the part people underestimate: colour, spacing, type and motion defined once, generated for CSS variables and native targets from the same source. The docs contain copy-paste examples with real states — loading, empty, error, disabled — because a component without its states is only half designed.',
+					'Tokens are the part people underestimate: colour, spacing, type and motion defined once, generated for CSS variables and native targets from the same source. The docs contain copy-paste examples with real states (loading, empty, error, disabled), because a component without its states is only half designed.',
 				],
 			},
 			{
@@ -110,7 +110,7 @@ export const projects: Project[] = [
 		title: 'Tempo',
 		tagline: 'Real-time editing that survives bad wifi',
 		summary:
-			'A collaborative document editor where presence, cursors and conflict resolution are felt only when they fail — which is to say, rarely.',
+			'A collaborative document editor where presence, cursors and conflict resolution are felt only when they fail, which is to say, rarely.',
 		year: '2024',
 		role: 'Fullstack engineer',
 		team: '3 engineers',
@@ -168,13 +168,13 @@ export const projects: Project[] = [
 			{
 				title: 'The problem',
 				paragraphs: [
-					'A catalogue of 4,000 products on a storefront that shipped 900kB of JavaScript before showing a single price. Mobile users — most of the traffic — bounced before the hero image finished loading.',
+					'A catalogue of 4,000 products on a storefront that shipped 900kB of JavaScript before showing a single price. Mobile users, most of the traffic, bounced before the hero image finished loading.',
 				],
 			},
 			{
 				title: 'The approach',
 				paragraphs: [
-					'The rule was simple: anything that can be computed at build time is. Pages are static, regenerated on inventory changes, and hydrated only where interaction demands it — filters, cart, checkout. The rest is HTML and CSS.',
+					'The rule was simple: anything that can be computed at build time is. Pages are static, regenerated on inventory changes, and hydrated only where interaction demands it: filters, cart, checkout. The rest is HTML and CSS.',
 					'The API stayed small and boring on purpose: one Node service, one Postgres database, Stripe for payments. Boring infrastructure is fast infrastructure.',
 				],
 			},
@@ -199,43 +199,46 @@ export type Role = {
 
 export const roles: Role[] = [
 	{
-		period: 'Oct 2024 — now',
+		period: 'Oct 2024 to now',
 		title: 'Senior Frontend Developer',
 		company: 'Yadak',
 		note: 'Search, chat and the type-safe API layer behind a large car marketplace.',
 		points: [
-			'Led the Next.js 14 → 15.5/16 upgrade into a modular architecture — around 40% faster load times.',
-			'Type-safe APIs with tRPC across frontend and backend — about 60% fewer integration errors.',
-			'Full-text search with Elasticsearch over the car database — 95% relevance on queries.',
-			'Set up observability with OpenTelemetry and the Grafana stack (Loki, Tempo, Prometheus).',
+			'Led the Next.js 14 to 15.5/16 upgrade into a modular, high-performance architecture, cutting load times by around 40%.',
+			'Built interactive chatbot features on advanced AI models.',
+			'Type-safe APIs with tRPC across frontend and backend, reducing integration errors by about 60%.',
+			'Designed and optimised full-text search with Elasticsearch, improving search relevance to 95%.',
+			'Established the shadcn/ui foundation on top of a custom design system.',
+			'Observability through OpenTelemetry with the Grafana stack (Loki, Tempo, Prometheus).',
 		],
 	},
 	{
-		period: 'Sep 2022 — Sep 2024',
+		period: 'Sep 2022 to Sep 2024',
 		title: 'Frontend Developer',
 		company: 'Arka',
 		note: 'Legacy React modernised, and the tooling that made the team faster.',
 		points: [
-			'Overhauled 1000s of lines of legacy React, moving Redux to RTK for performance and UX.',
-			'CI/CD pipelines for 4 React projects on Azure DevOps, plus a company-wide TFVC → Git migration.',
-			'Pioneered Vite in older codebases — much faster dev environments and builds.',
-			'Multi-step, interconnected Excel validation with Zod.',
+			'Overhauled 1000s of lines of legacy React, moving Redux to RTK for better performance and UX.',
+			'Led the company-wide migration from TFVC to Git.',
+			'Architected and implemented CI/CD pipelines for 4 React projects on Azure DevOps.',
+			'Pioneered the adoption of Vite in legacy React codebases, speeding up dev environments and builds.',
+			'Built multi-step, interconnected validations for Excel files with Zod.',
 		],
 	},
 	{
-		period: 'Jan 2022 — Sep 2022',
+		period: 'Jan 2022 to Sep 2022',
 		title: 'Fullstack Developer',
-		company: 'Tali — freelance',
-		note: 'A full-stack project management app, built end to end.',
+		company: 'Tali (freelance)',
+		note: 'A personal project and freelance work: a full-stack project management app, built end to end.',
 		points: [
-			'Next.js and Tailwind CSS front end, built around my own workflow.',
-			'End-to-end type safety: Drizzle ORM, tRPC and React Query.',
+			'Architected and deployed the app with Next.js and Tailwind CSS, built around my own workflow.',
+			'End-to-end type-safe endpoints with Drizzle ORM, tRPC and React Query.',
 			'Form components with React Hook Form and Zod, plus Zustand for global state.',
 		],
 	},
 ];
 
-/* Homepage "selected work" — drawn from the résumé's real roles rather than
+/* Homepage "selected work": drawn from the résumé's real roles rather than
    the fictional case studies, which still live in `projects` for /work/*. */
 export type WorkItem = {
 	index: string;
@@ -253,10 +256,10 @@ export const work: WorkItem[] = [
 		index: '01',
 		company: 'Yadak',
 		role: 'Senior Frontend Developer',
-		period: 'Oct 2024 — present',
+		period: 'Oct 2024 to present',
 		year: '2024',
 		summary:
-			'Search, chat and the API layer for a large car marketplace — Next.js on the front, tRPC and Elasticsearch behind it.',
+			'Search, chat and the API layer for a large car marketplace: Next.js on the front, tRPC and Elasticsearch behind it.',
 		stack: ['Next.js', 'TypeScript', 'tRPC', 'Elasticsearch'],
 		result: { value: '−40%', label: 'load times after the Next.js 15/16 rebuild' },
 	},
@@ -264,7 +267,7 @@ export const work: WorkItem[] = [
 		index: '02',
 		company: 'Arka',
 		role: 'Frontend Developer',
-		period: 'Sep 2022 — Sep 2024',
+		period: 'Sep 2022 to Sep 2024',
 		year: '2022',
 		summary:
 			'Legacy React brought up to date: Redux → RTK, Vite in place of Webpack, and CI/CD the whole team could trust.',
@@ -274,8 +277,8 @@ export const work: WorkItem[] = [
 	{
 		index: '03',
 		company: 'Tali',
-		role: 'Fullstack Developer — freelance',
-		period: 'Jan 2022 — Sep 2022',
+		role: 'Fullstack Developer (freelance)',
+		period: 'Jan 2022 to Sep 2022',
 		year: '2022',
 		summary:
 			'A full-stack project management app: Next.js, Drizzle and tRPC, with forms that validate the way people actually fill them in.',
