@@ -6,20 +6,19 @@ import '../styles/global.css';
 interface Props {
 	title: string;
 	description: string;
-	theme?: 'paper' | 'shell';
+	variant?: 'paper' | 'shell';
 }
 
-const { title, description, theme = 'paper' } = Astro.props;
-const themeColor = theme === 'shell' ? '#14110e' : '#faf7f1';
+const { title, description, variant = 'paper' } = Astro.props;
 ---
 
-<html lang="en" data-theme={theme}>
+<html lang="en" data-theme="system" data-variant={variant}>
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content={description} />
-		<meta name="theme-color" content={themeColor} />
+		<meta name="theme-color" content="#faf7f1" />
 		<meta property="og:type" content="website" />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
@@ -27,6 +26,27 @@ const themeColor = theme === 'shell' ? '#14110e' : '#faf7f1';
 			// Reveal-on-scroll is a progressive enhancement: only hide content when
 			// there is a script to bring it back.
 			document.documentElement.classList.add('js');
+
+			// Apply the saved choice (or system preference) before the first paint.
+			try {
+				const savedTheme = localStorage.getItem('theme-preference');
+				document.documentElement.dataset.theme =
+					savedTheme === 'light' || savedTheme === 'dark'
+						? savedTheme
+						: window.matchMedia('(prefers-color-scheme: dark)').matches
+							? 'dark'
+							: 'light';
+			} catch {
+				document.documentElement.dataset.theme = window.matchMedia(
+					'(prefers-color-scheme: dark)',
+				).matches
+					? 'dark'
+					: 'light';
+			}
+			document.querySelector('meta[name="theme-color"]')?.setAttribute(
+				'content',
+				document.documentElement.dataset.theme === 'dark' ? '#14110e' : '#faf7f1',
+			);
 		</script>
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="alternate icon" type="image/x-icon" href="/favicon.ico" />
@@ -38,9 +58,45 @@ const themeColor = theme === 'shell' ? '#14110e' : '#faf7f1';
 		<main id="main">
 			<slot />
 		</main>
-		<SiteFooter theme={theme} />
+		<SiteFooter variant={variant} />
 
 		<script>
+			const root = document.documentElement;
+			const themeToggle = document.querySelector<HTMLButtonElement>('[data-theme-toggle]');
+			const themeMedia = window.matchMedia('(prefers-color-scheme: dark)');
+			const getSavedTheme = () => {
+				try {
+					const savedTheme = localStorage.getItem('theme-preference');
+					return savedTheme === 'light' || savedTheme === 'dark' ? savedTheme : null;
+				} catch {
+					return null;
+				}
+			};
+			const applyTheme = (theme: 'light' | 'dark') => {
+				root.dataset.theme = theme;
+				root.style.colorScheme = theme;
+				const label = `Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`;
+				themeToggle?.setAttribute('aria-label', label);
+				themeToggle?.setAttribute('title', label);
+				document
+					.querySelector('meta[name="theme-color"]')
+					?.setAttribute('content', theme === 'dark' ? '#14110e' : '#faf7f1');
+			};
+
+			applyTheme(root.dataset.theme === 'dark' ? 'dark' : 'light');
+			themeToggle?.addEventListener('click', () => {
+				const nextTheme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+				applyTheme(nextTheme);
+				try {
+					localStorage.setItem('theme-preference', nextTheme);
+				} catch {
+					// The selection still applies for this page if storage is unavailable.
+				}
+			});
+			themeMedia.addEventListener('change', (event) => {
+				if (!getSavedTheme()) applyTheme(event.matches ? 'dark' : 'light');
+			});
+
 			// Reveal sections as they enter the viewport. Decorative only: content
 			// is readable without it, and reduced motion opts out entirely.
 			//

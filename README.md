@@ -1,11 +1,12 @@
 # Ali Fahim portfolio
 
-A single-page portfolio built with [Astro](https://astro.build). Warm dark
-design language: an espresso-black surface, paper-warm text and one clay accent. Instrument Serif
-headlines over Inter body copy, with JetBrains Mono reserved for the terminal-flavoured microcopy
-(prompt lines, command names, window frames) kept as a voice rather than a full shell. Motion is
-restrained (a typing effect, a blinking caret, fast state changes). No client-side framework: the
-pages are static HTML and CSS, with ~50 lines of JavaScript for scroll reveals.
+A single-page portfolio built with [Astro](https://astro.build). Warm editorial styling with a
+system-aware light/dark palette: paper and ink in light mode, espresso and paper-warm text in dark
+mode, with one clay accent. Instrument Serif headlines over Inter body copy, with JetBrains Mono
+reserved for terminal-flavoured microcopy (prompt lines, command names, window frames) kept as a
+voice rather than a full shell. Motion is restrained (a typing effect, a blinking caret, fast state
+changes). No client-side framework: the pages are static HTML and CSS, with a small amount of
+JavaScript for theme switching and scroll reveals.
 
 ```sh
 pnpm dev      # dev server on localhost:4321
@@ -20,16 +21,18 @@ pnpm deploy   # build and deploy to Cloudflare with the cf CLI
 | --- | --- |
 | Name, hero copy, sections | `src/components/*.astro` |
 | Work history and career highlights | `src/data/experience.ts` |
-| Colours, type scale, motion tokens, shell theme | `src/styles/global.css` (`:root`, plus `html[data-theme='shell']`) |
+| Colours, type scale, motion tokens, color modes | `src/styles/global.css` (`:root`, plus `html[data-theme='dark']`) |
 | Favicon and header mark (AF monogram) | `public/favicon.svg`, rasterized into `public/favicon.ico` |
 | Worker name, custom domain, compat date | `cloudflare.config.ts` |
 | Static assets directory | `wrangler.config.ts` |
 
-The homepage runs the `shell` theme (`<Base theme="shell">`). Career highlights and experience
-are based on Ali's résumé. Detailed case studies are intentionally omitted until project details
-and public artifacts can be verified and shared. Former placeholder case-study URLs redirect to
-the career highlights. Fonts (Instrument Serif, Inter, JetBrains Mono) are self-hosted from
-`@fontsource` packages, so nothing is fetched from a third party.
+The homepage runs the `shell` page variant (`<Base variant="shell">`). Color mode follows the
+visitor's system preference until they choose a mode with the header toggle; that choice is saved
+in local storage. Career highlights and experience are based on Ali's résumé. Detailed case studies
+are intentionally omitted until project details and public artifacts can be verified and shared.
+Former placeholder case-study URLs redirect to the career highlights. Fonts (Instrument Serif,
+Inter, JetBrains Mono) are self-hosted from `@fontsource` packages, so nothing is fetched from a
+third party.
 
 ## Deployment
 

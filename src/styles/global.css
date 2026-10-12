@@ -526,15 +526,8 @@ p {
 	}
 }
 
-/* ==========================================================================
-   Theme: shell (the promoted prototype variant)
-   Warm dark: espresso black, paper-warm text, one clay accent. The terminal
-   voice stays (prompts, command names, window frames), but the phosphor and
-   CRT effects are gone. Opt in per page: <html data-theme="shell">. Pages
-   without it keep the warm editorial tokens above.
-   ========================================================================== */
-
-html[data-theme='shell'] {
+/* Dark palette ------------------------------------------------------------ */
+html[data-theme='dark'] {
 	color-scheme: dark;
 
 	--paper: #14110e;
@@ -548,7 +541,30 @@ html[data-theme='shell'] {
 	--accent: #e08a63;
 	--accent-deep: #f2ab84;
 	--accent-wash: color-mix(in srgb, var(--accent) 13%, transparent);
+}
 
+/* If JavaScript is unavailable, the server-rendered system setting still
+   follows the operating system preference. */
+@media (prefers-color-scheme: dark) {
+	html[data-theme='system'] {
+		color-scheme: dark;
+
+		--paper: #14110e;
+		--paper-raised: #1c1713;
+		--paper-sunk: #0e0b09;
+		--ink: #f2ebe3;
+		--ink-soft: #cbbdb1;
+		--ink-muted: #9c8d80;
+		--line: color-mix(in srgb, var(--ink) 12%, transparent);
+		--line-strong: color-mix(in srgb, var(--ink) 28%, transparent);
+		--accent: #e08a63;
+		--accent-deep: #f2ab84;
+		--accent-wash: color-mix(in srgb, var(--accent) 13%, transparent);
+	}
+}
+
+/* The shell is a page variant; it no longer determines the color mode. */
+html[data-variant='shell'] {
 	--radius: 5px;
 	--radius-lg: 10px;
 
@@ -558,16 +574,16 @@ html[data-theme='shell'] {
 	--duration-slow: 360ms;
 }
 
-html[data-theme='shell'] body {
+html[data-variant='shell'] body {
 	font-family: var(--font-sans);
 	font-size: var(--step-0);
 	line-height: 1.65;
 }
 
-html[data-theme='shell'] h1,
-html[data-theme='shell'] h2,
-html[data-theme='shell'] h3,
-html[data-theme='shell'] h4 {
+html[data-variant='shell'] h1,
+html[data-variant='shell'] h2,
+html[data-variant='shell'] h3,
+html[data-variant='shell'] h4 {
 	font-family: var(--font-display);
 	font-weight: 400;
 	line-height: 1.1;
@@ -744,7 +760,7 @@ html[data-theme='shell'] h4 {
 }
 
 /* Control skins ---------------------------------------------------------- */
-html[data-theme='shell'] .btn {
+html[data-variant='shell'] .btn {
 	background: transparent;
 	border: 1px solid var(--line-strong);
 	color: var(--ink-soft);
@@ -752,49 +768,53 @@ html[data-theme='shell'] .btn {
 	letter-spacing: 0.02em;
 }
 
-html[data-theme='shell'] .btn--solid {
+html[data-variant='shell'] .btn--solid {
 	background: var(--ink);
 	border-color: transparent;
 	color: var(--paper);
 }
 
-html[data-theme='shell'] .tag {
+html[data-variant='shell'] .tag {
 	border-color: var(--line-strong);
 }
 
-html[data-theme='shell'] .eyebrow {
+html[data-variant='shell'] .eyebrow {
 	color: var(--ink-muted);
 }
 
-html[data-theme='shell'] .eyebrow--accent {
+html[data-variant='shell'] .eyebrow--accent {
 	color: var(--accent-deep);
 }
 
+html[data-theme='light'][data-variant='shell'] .btn--solid:hover {
+	color: #fffdf9;
+}
+
 @media (hover: hover) and (pointer: fine) {
-	html[data-theme='shell'] .btn:hover {
+	html[data-variant='shell'] .btn:hover {
 		background: var(--accent-wash);
 		border-color: color-mix(in srgb, var(--accent) 55%, transparent);
 		color: var(--ink);
 	}
 
-	html[data-theme='shell'] .btn--solid:hover {
+	html[data-variant='shell'] .btn--solid:hover {
 		background: var(--accent);
 		border-color: transparent;
 		color: var(--paper-sunk);
 	}
 
-	html[data-theme='shell'] .btn:hover .btn__arrow {
+	html[data-variant='shell'] .btn:hover .btn__arrow {
 		transform: translate(2px, -2px);
 	}
 
-	html[data-theme='shell'] .link:hover,
-	html[data-theme='shell'] .link:focus-visible {
+	html[data-variant='shell'] .link:hover,
+	html[data-variant='shell'] .link:focus-visible {
 		color: var(--accent-deep);
 	}
 }
 
 /* Reveals: quick and mechanical rather than soft. */
-html[data-theme='shell'].js [data-reveal].is-visible {
+html[data-variant='shell'].js [data-reveal].is-visible {
 	animation: sh-rise var(--duration-slow) var(--ease-out) backwards;
 	animation-delay: calc(var(--i, 0) * 70ms);
 }
@@ -811,17 +831,17 @@ html[data-theme='shell'].js [data-reveal].is-visible {
 }
 
 @media (prefers-reduced-motion: reduce) {
-	html[data-theme='shell'] .sh-typed {
+	html[data-variant='shell'] .sh-typed {
 		animation: none;
 		clip-path: none;
 	}
 
-	html[data-theme='shell'] .sh-caret {
+	html[data-variant='shell'] .sh-caret {
 		animation: none;
 		opacity: 1;
 	}
 
-	html[data-theme='shell'].js [data-reveal].is-visible {
+	html[data-variant='shell'].js [data-reveal].is-visible {
 		animation: sh-rise 180ms ease backwards;
 		animation-delay: 0ms;
 	}

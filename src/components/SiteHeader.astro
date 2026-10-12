@@ -22,6 +22,21 @@ const links = [
 					</a>
 				))
 			}
+			<button
+				class="theme-toggle"
+				type="button"
+				data-theme-toggle
+				aria-label="Switch to dark mode"
+				title="Switch to dark mode"
+			>
+				<svg class="theme-toggle__sun" viewBox="0 0 24 24" aria-hidden="true">
+					<circle cx="12" cy="12" r="4" />
+					<path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42" />
+				</svg>
+				<svg class="theme-toggle__moon" viewBox="0 0 24 24" aria-hidden="true">
+					<path d="M20.2 15.4A8.5 8.5 0 0 1 8.6 3.8 8.5 8.5 0 1 0 20.2 15.4Z" />
+				</svg>
+			</button>
 		</nav>
 	</div>
 </header>
@@ -74,7 +89,10 @@ const links = [
 	.site-nav {
 		display: flex;
 		align-items: center;
+		justify-content: flex-end;
+		flex-wrap: wrap;
 		gap: clamp(0.9rem, 0.4rem + 1.6vw, 1.9rem);
+		max-width: 100%;
 	}
 
 	.site-nav__link {
@@ -112,6 +130,67 @@ const links = [
 		transform: scaleX(1);
 	}
 
+	.theme-toggle {
+		display: inline-grid;
+		place-items: center;
+		width: 2.5rem;
+		height: 2.5rem;
+		padding: 0;
+		border: 1px solid var(--line-strong);
+		border-radius: 999px;
+		background: transparent;
+		color: var(--ink-muted);
+		cursor: pointer;
+		transition:
+			color var(--duration-fast) var(--ease-out),
+			border-color var(--duration-fast) var(--ease-out),
+			background-color var(--duration-fast) var(--ease-out);
+	}
+
+	html:not(.js) .theme-toggle {
+		display: none;
+	}
+
+	.theme-toggle:hover {
+		color: var(--ink);
+		border-color: var(--accent);
+		background: var(--accent-wash);
+	}
+
+	.theme-toggle svg {
+		width: 1.15rem;
+		height: 1.15rem;
+		fill: none;
+		stroke: currentColor;
+		stroke-width: 1.6;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+	}
+
+	.theme-toggle__sun {
+		display: none;
+	}
+
+	html[data-theme='dark'] .theme-toggle__sun,
+	html[data-theme='system'] .theme-toggle__sun {
+		display: block;
+	}
+
+	html[data-theme='dark'] .theme-toggle__moon,
+	html[data-theme='system'] .theme-toggle__moon {
+		display: none;
+	}
+
+	@media (prefers-color-scheme: light) {
+		html[data-theme='system'] .theme-toggle__sun {
+			display: none;
+		}
+
+		html[data-theme='system'] .theme-toggle__moon {
+			display: block;
+		}
+	}
+
 	@media (prefers-reduced-motion: reduce) {
 		.brand__mark {
 			transition: none;
@@ -122,6 +201,10 @@ const links = [
 		}
 
 		.site-nav__link::after {
+			transition: none;
+		}
+
+		.theme-toggle {
 			transition: none;
 		}
 	}
