@@ -36,5 +36,11 @@ function cloudflareBuildOutput() {
 
 // https://astro.build/config
 export default defineConfig({
+  redirects: {
+    '/work/ledger': '/#work',
+    '/work/harbor': '/#work',
+    '/work/tempo': '/#work',
+    '/work/northwind': '/#work',
+  },
   integrations: [cloudflareBuildOutput()],
 });

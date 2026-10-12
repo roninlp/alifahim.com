@@ -1,8 +1,6 @@
 ---
-/* Home: selected work. The window lists the three real roles from the
-   résumé; the fictional case studies in `projects` stay on disk under /work
-   but are no longer linked from here. */
-import { work } from '../data/projects';
+/* Home: concise career highlights linking to the full role details below. */
+import { work } from '../data/experience';
 ---
 
 <section class="sh-section" id="work">
@@ -10,31 +8,27 @@ import { work } from '../data/projects';
 		<div class="sh-win" data-reveal>
 			<header class="sh-win__bar">
 				<span class="sh-win__dots" aria-hidden="true"><i></i><i></i><i></i></span>
-				<h2 class="sh-win__name">~/portfolio/selected-work</h2>
-				<span class="sh-win__meta">3 items</span>
+				<h2 class="sh-win__name">~/portfolio/career-highlights</h2>
+				<span class="sh-win__meta">{work.length} roles</span>
 			</header>
 
 			<div class="sh-win__body">
 				<ul class="sh-list">
 					{
 						work.map((item) => (
-							<li class="sh-row">
-								<span class="sh-row__idx">{item.index}</span>
+							<li>
+								<a class="sh-row" href={`#role-${item.id}`}>
+									<span class="sh-row__idx">{item.index}</span>
 
-								<span class="sh-row__name">
-									<span class="sh-row__title">{item.company}</span>
-									<span class="sh-row__tag">
-										{item.role} · {item.period}
+									<span class="sh-row__name">
+										<span class="sh-row__title">{item.company}</span>
+										<span class="sh-row__tag">
+											{item.role} · {item.period}
+										</span>
 									</span>
-								</span>
 
-								<span class="sh-row__stack">{item.stack.slice(0, 3).join(' · ')}</span>
-
-								<span class="sh-row__result">
-									<b>{item.result.value}</b> {item.result.label}
-								</span>
-
-								<span class="sh-row__year">{item.year}</span>
+									<span class="sh-row__description">{item.description}</span>
+								</a>
 							</li>
 						))
 					}
@@ -59,12 +53,13 @@ import { work } from '../data/projects';
 	.sh-row {
 		position: relative;
 		display: grid;
-		grid-template-columns: 2.5rem minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 1fr) 3.5rem;
-		gap: 1rem;
+		grid-template-columns: 2.5rem minmax(0, 1fr) minmax(0, 1.4fr);
+		gap: 1rem 1.5rem;
 		align-items: center;
 		padding: 0.75rem 0.75rem;
 		margin-inline: -0.75rem;
 		border-bottom: 1px solid var(--line);
+		color: inherit;
 		transition: background-color var(--duration) var(--ease-out);
 	}
 
@@ -99,6 +94,19 @@ import { work } from '../data/projects';
 			transform var(--duration) var(--ease-out);
 	}
 
+	.sh-row:focus-visible {
+		background: var(--accent-wash);
+	}
+
+	.sh-row:focus-visible::before {
+		transform: scaleY(1);
+	}
+
+	.sh-row:focus-visible .sh-row__idx::before {
+		opacity: 1;
+		transform: translateX(0);
+	}
+
 	.sh-row__name {
 		display: block;
 		min-width: 0;
@@ -120,28 +128,11 @@ import { work } from '../data/projects';
 		line-height: 1.5;
 	}
 
-	.sh-row__stack {
-		font-family: var(--font-mono);
-		font-size: var(--step--2);
-		color: var(--ink-muted);
-	}
-
-	.sh-row__result {
-		font-family: var(--font-mono);
-		font-size: var(--step--2);
+	.sh-row__description {
+		grid-column: 3;
+		font-size: var(--step--1);
+		line-height: 1.55;
 		color: var(--ink-soft);
-	}
-
-	.sh-row__result b {
-		color: var(--accent);
-		font-weight: 700;
-	}
-
-	.sh-row__year {
-		text-align: right;
-		font-family: var(--font-mono);
-		font-size: var(--step--2);
-		color: var(--ink-muted);
 	}
 
 	.sh-hint {
@@ -172,12 +163,11 @@ import { work } from '../data/projects';
 
 	@media (max-width: 64rem) {
 		.sh-row {
-			grid-template-columns: 2.5rem minmax(0, 1fr) minmax(0, 1fr);
+			grid-template-columns: 2.5rem minmax(0, 1fr);
 		}
 
-		.sh-row__stack,
-		.sh-row__year {
-			display: none;
+		.sh-row__description {
+			grid-column: 2;
 		}
 	}
 
@@ -186,10 +176,6 @@ import { work } from '../data/projects';
 			grid-template-columns: 2.5rem minmax(0, 1fr);
 			align-items: start;
 			row-gap: 0.35rem;
-		}
-
-		.sh-row__result {
-			grid-column: 2;
 		}
 	}
 

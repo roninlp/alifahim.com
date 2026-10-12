@@ -1,6 +1,6 @@
 # Ali Fahim portfolio
 
-A single-page portfolio plus case study pages, built with [Astro](https://astro.build). Warm dark
+A single-page portfolio built with [Astro](https://astro.build). Warm dark
 design language: an espresso-black surface, paper-warm text and one clay accent. Instrument Serif
 headlines over Inter body copy, with JetBrains Mono reserved for the terminal-flavoured microcopy
 (prompt lines, command names, window frames) kept as a voice rather than a full shell. Motion is
@@ -19,19 +19,17 @@ pnpm deploy   # build and deploy to Cloudflare with the cf CLI
 | What | Where |
 | --- | --- |
 | Name, hero copy, sections | `src/components/*.astro` |
-| Projects, case study copy, work history | `src/data/projects.ts` |
-| Case study pages | `src/pages/work/[slug].astro` (one per project, generated from the data file) |
+| Work history and career highlights | `src/data/experience.ts` |
 | Colours, type scale, motion tokens, shell theme | `src/styles/global.css` (`:root`, plus `html[data-theme='shell']`) |
-| Project cover art | `public/covers/*.svg` |
 | Favicon and header mark (AF monogram) | `public/favicon.svg`, rasterized into `public/favicon.ico` |
 | Worker name, custom domain, compat date | `cloudflare.config.ts` |
 | Static assets directory | `wrangler.config.ts` |
 
-The homepage runs the `shell` theme (`<Base theme="shell">`). The four case studies are leftover
-placeholder copy: they're unlinked from the homepage and still carry fictional projects, so
-either rewrite them from real work or delete `src/pages/work/` and the `projects` array. Fonts
-(Instrument Serif, Inter, JetBrains Mono) are self-hosted from `@fontsource` packages, so nothing
-is fetched from a third party.
+The homepage runs the `shell` theme (`<Base theme="shell">`). Career highlights and experience
+are based on Ali's résumé. Detailed case studies are intentionally omitted until project details
+and public artifacts can be verified and shared. Former placeholder case-study URLs redirect to
+the career highlights. Fonts (Instrument Serif, Inter, JetBrains Mono) are self-hosted from
+`@fontsource` packages, so nothing is fetched from a third party.
 
 ## Deployment
 

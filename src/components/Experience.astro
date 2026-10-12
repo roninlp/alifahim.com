@@ -1,6 +1,6 @@
 ---
 /* Home: experience as `git log`: each role is a commit, current one HEAD. */
-import { roles } from '../data/projects';
+import { roles } from '../data/experience';
 ---
 
 <section class="sh-section" id="experience">
@@ -16,7 +16,7 @@ import { roles } from '../data/projects';
 				<ol class="sh-log">
 					{
 						roles.map((role, i) => (
-							<li class="sh-log__row">
+							<li class="sh-log__row" id={`role-${role.id}`}>
 								<span class="sh-log__hash">
 									<i aria-hidden="true">{i === 0 ? 'HEAD ->' : '•'}</i>
 									{role.period}
@@ -54,6 +54,7 @@ import { roles } from '../data/projects';
 		grid-template-columns: 11rem minmax(0, 1fr);
 		gap: 0.35rem 1.5rem;
 		padding: 0.85rem 0 1.35rem 1.5rem;
+		scroll-margin-top: 6rem;
 	}
 
 	.sh-log__row:last-child {
